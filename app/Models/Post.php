@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\TagPost;
 
 class Post extends Model
 {
@@ -21,8 +22,14 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'tag_post', 'post_id', 'tag_id')
-            ->withTimestamps() // create timestamps column automatically
-            ->withPivot('status'); //  add additional table
+        // return $this->belongsToMany(Tag::class, 'tag_post', 'post_id', 'tag_id')
+        //     ->withTimestamps() // create timestamps column automatically
+        //     ->withPivot('status'); //  add additional table
+
+        // Relations with pivot table model
+        return $this->belongsToMany(Tag::class, 'tag_post')
+            ->using(TagPost::class)
+            ->withTimestamps()
+            ->withPivot('status');
     }
 }

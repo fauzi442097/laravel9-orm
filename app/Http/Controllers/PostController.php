@@ -16,8 +16,14 @@ class PostController extends Controller
         //     'name' => 'Laravel'
         // ]);
 
-        // Insert pivot table
-        // Post::first()->tags()->attach(1);
+        // $post = Post::first();
+
+        // // // Insert pivot table
+        // $post->tags()->attach([
+        //     1 => [
+        //         'status' => 'approved'
+        //     ]
+        // ]);
 
         // insert pivot table with additional column
         // Post::first()->tags()->attach([

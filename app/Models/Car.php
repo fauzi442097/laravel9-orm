@@ -20,4 +20,24 @@ class Car extends Model
     // protected $dateFormat = 'd/m/Y H:i:s';
 
     protected $guarded = [];
+
+    // Create Events Lifecycle for Model
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     // Event fire when data has been created
+    //     static::created(function ($car) {
+    //         dd('From boot method', $car);
+    //     });
+
+    //     // Event fire when data is creating
+    //     static::creating(function ($car) {
+    //         dd('creating');
+    //     });
+
+    //     static::updated(function ($car) {
+    //         dd('Updated from boot', $car);
+    //     });
+    // }
 }
