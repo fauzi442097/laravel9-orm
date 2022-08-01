@@ -30,7 +30,7 @@ class Project extends Model
             'project_id', // Foreign key in pivot table
             'user_id', // Foregin key in task table
             'id', // id table in project table
-            'user_id' // user id in pivot table
+            'user_id' // user id in pivot tablephp 
         );
     }
 

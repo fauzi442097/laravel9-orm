@@ -13,6 +13,8 @@
 
     <div class="w-5/6 py-10">
         @foreach ( $posts as $post )
+
+
             <div class="m-auto">
                 <span class="uppercase text-zinc-400 font-bold text-sm">
                     {{  $post->created_at }}
@@ -21,6 +23,14 @@
                 <h2 class="text-gray-700 text-5xl">
                     {{  $post->title }}
                 </h2>
+
+                <p class="text-gray-500 py-2 italic font-sm">
+                    @if ( $post->image )
+                        {{ $post->image->url }}
+                    @else
+                        No url image available ...
+                    @endif
+                </p>
 
                 <p class="text-gray-700 py-6">
                     {{  $post->description }}

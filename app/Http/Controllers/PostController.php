@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Image;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,6 +12,11 @@ class PostController extends Controller
 {
     public function index()
     {
+        $post = Post::find(23);
+        dd($post->latestComment);
+
+        $image = Image::find(1);
+        // $image->imageable; // retrive parent data
 
         // $tag = Tag::create([
         //     'name' => 'Laravel'
@@ -38,7 +44,7 @@ class PostController extends Controller
           whereDoesntHave == doesntHave : filter for post that doesn't have a user
         */
         $posts = Post::latest('id')
-            ->with(['user', 'tags'])
+            ->with(['user', 'tags', 'image'])
             // ->has('user.addressess', '>', 1) // return user has more one country
             // ->whereHas('user.addressess', function ($query) {
             //     $query->where('country', 'India');
@@ -46,7 +52,7 @@ class PostController extends Controller
             // ->whereHas('user', function ($query) {
             //     $query->where('name', 'Sydnee Shanahan MD');
             // })
-            ->has('user')
+            // ->has('user')
             ->get();
 
         return view('post.index', [
@@ -56,7 +62,10 @@ class PostController extends Controller
 
     public function create()
     {
-        Post::factory()->create();
+        $newPost = Post::factory()->create();
+        $newPost->image()->create([
+            'url' => fake()->url()
+        ]);
         return redirect('/posts');
     }
 
