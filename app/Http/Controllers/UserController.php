@@ -14,7 +14,11 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::latest('id')->with('addressess')->get();
+        $users = User::latest('id')
+            ->with(['addressess'])
+            ->withCount('posts')
+            ->get();
+
         return view('users.index', [
             'users' => $users
         ]);

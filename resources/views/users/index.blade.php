@@ -29,8 +29,8 @@
                     {{  $user->name }}
                 </h2>
 
-                <p class="text-lg text-gray-700 py-6">
-                    @if ( $user->addressess )
+                @if ( count($user->addressess) > 1 )
+                    <p class="text-lg text-gray-700 py-6">
                         @foreach ( $user->addressess as $address )
                             <a
                                 href="addresses/{{ $address->id }}"
@@ -38,6 +38,14 @@
                                 {{ $address->country }}
                             </a>
                         @endforeach
+                    </p>
+                @endif
+
+                <p class="text-md text-gray-700 py-5">
+                    @if ( $user->posts_count == 0 )
+                        Post not available ..
+                    @else
+                        Has {{ $user->posts_count }} posts
                     @endif
                 </p>
 

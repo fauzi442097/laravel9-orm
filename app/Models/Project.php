@@ -10,6 +10,8 @@ use App\Models\Task;
 class Project extends Model
 {
     use HasFactory;
+    use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
+
 
     protected $guarded = ['id'];
 
@@ -21,5 +23,10 @@ class Project extends Model
     public function projectTasks()
     {
         return $this->hasManyThrough(Task::class, User::class, 'project_id', 'user_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasManyDeep(Comment::class, [User::class, Task::class]);
     }
 }

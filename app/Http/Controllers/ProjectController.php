@@ -19,6 +19,7 @@ class ProjectController extends Controller
         //
         $projects = Project::latest('id')
             ->with(['users', 'users.tasks', 'projectTasks'])
+            ->withCount(['projectTasks', 'comments'])
             ->has('users')
             ->get();
 

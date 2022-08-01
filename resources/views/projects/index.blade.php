@@ -23,7 +23,7 @@
                 </h2>
 
                 <div class="mt-8">
-                    <p class="text-zinc-400 bold"> Task: </p>
+                    <p class="text-zinc-400 bold"> {{ $project->project_tasks_count }} Task ({{ $project->comments_count }} comments): </p>
                     <ul class="list-decimal mx-10">
                         @forelse ($project->projectTasks as $item)
                             <li> {{ $item->title }}</li>

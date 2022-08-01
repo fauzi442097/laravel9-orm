@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use App\Models\Address;
 use App\Models\User;
 use App\Models\Tag;
@@ -41,6 +43,10 @@ Route::get('/posts/users/{id}', [PostController::class, 'showPostUser']);
 
 Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/create', [ProjectController::class, 'create']);
+
+Route::get('/tasks', [TaskController::class, 'index']);
+
+Route::get('/comments/create', [CommentController::class, 'create']);
 
 Route::get('/tags', function () {
     $tags = Tag::with('posts')->get();
