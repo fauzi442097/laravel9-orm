@@ -49,6 +49,17 @@
                     @endif
                 </p>
 
+                <div class="mt-8">
+                    <p class="text-zinc-400 bold"> Projects: </p>
+                    <ul class="list-disc mx-10">
+                        @forelse ($user->projects as $project)
+                            <li> {{ $project->title }} </li>
+                        @empty
+
+                        @endforelse
+                    </ul>
+                </div>
+
                 <hr class="mt-4 mb-8">
             </div>
         @endforeach

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Team;
 use App\Models\Task;
 
 class Project extends Model
@@ -17,12 +18,20 @@ class Project extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
+        // return $this->hasMany(User::class);
     }
 
     public function projectTasks()
     {
-        return $this->hasManyThrough(Task::class, User::class, 'project_id', 'user_id');
+        return $this->hasManyThrough(
+            Task::class,
+            Team::class,
+            'project_id', // Foreign key in pivot table
+            'user_id', // Foregin key in task table
+            'id', // id table in project table
+            'user_id' // user id in pivot table
+        );
     }
 
     public function comments()

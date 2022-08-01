@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Task;
+use Database\Factories\UserFactory;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -36,6 +37,30 @@ class ProjectController extends Controller
     public function create()
     {
         //
+
+        // $project1 = Project::create([
+        //     'title' => 'Project 1'
+        // ]);
+
+        // $project2 = Project::create([
+        //     'title' => 'Project 2'
+        // ]);
+
+        // $user1 = User::factory()->create();
+        // $user2 = User::factory()->create();
+        // $user3 = User::factory()->create();
+
+        // // Assign to project_user
+        // $project1->users()->attach($user1);
+        // $project1->users()->attach($user2);
+        // $project1->users()->attach($user3);
+
+        // $project2->users()->attach($user1);
+        // $project2->users()->attach($user2);
+        // $project2->users()->attach($user3);
+
+        // dd('tes');
+
         $project = Project::factory()->create();
 
         User::factory(rand(1, 5))->make()->each(function ($user) use ($project) {
